@@ -9,12 +9,10 @@ import { AppComponent } from '../app.component';
 
 const routes: Routes = [
   //rutas protegidas
-  {path: '', component:PagesComponent,
-   children:[
-    {path: 'dashboard', component:DashboardComponent},
-    {path: 'category', component:CategoryComponent},
-    {path: 'product', component:ProductComponent}
-] },
+  {path: '', component:PagesComponent },
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'category', component: CategoryComponent},
+  {path: 'product', component: ProductComponent}
 ];
 
 @NgModule({
@@ -27,4 +25,4 @@ const routes: Routes = [
    ]
 })
 
-export class PagesRoutingModule { }
+export class PagesRoutingModule { };
