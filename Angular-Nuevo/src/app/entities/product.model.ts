@@ -8,3 +8,11 @@ export interface IProducto {
     category: ICategory,
     categoryId: number
 }
+
+export interface CreateProductDto extends Omit<IProducto, 'id'| 'category'>{
+    categoryId:number;
+};
+
+export interface UpdateProductDto extends Partial<IProducto>{
+    categoryId?:number;
+}

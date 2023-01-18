@@ -1,13 +1,13 @@
 //Trabajar con los metodos http de la libreria http client
 import { Component, OnInit } from '@angular/core';
-import { HttpClient as HttpClient } from '@angular/common/http';
 import { IProducto } from 'src/app/entities/product.model';
+import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
 
-// get     //
-// post    //
-// put     //
-// delete  //
-// 😳😳   //
+// get
+// post
+// put
+// delete
+                                                // 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳//                                   
 
 @Component({
   selector: 'app-product',
@@ -15,78 +15,46 @@ import { IProducto } from 'src/app/entities/product.model';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  constructor( private httpClient: HttpClient ) {};
-// GET 
-  getProducts(): void {
-    const response = this.httpClient.get("https://api.escuelajs.co/api/v1/products/").subscribe(response => {
-      console.log(response);
-    });
-  };
-// GET
-  getProduct(): void {
-    const url = "https://api.escuelajs.co/api/v1/products/150";
-    const response = this.httpClient.get(url).subscribe(response => {
-      console.log((response as any)?.images);
-    });
-  };
-// CREATE
-  createProduct(): void {
+  constructor(private ProductHttpServiceService: ProductHttpServiceService ) {};
 
-    const data: IProducto = {
-      title: "Sebastian Ortiz",
-      price: 500,
-      description: "hola",
-      images: ['https://educacion30.b-cdn.net/wp-content/uploads/2019/02/girasoles-978x652.jpg'],
-      categoryId: 5,
+  getProducts() {
+    const response = this.ProductHttpServiceService.getAll().subscribe(res => console.log(res));  
+  }
 
-      category: {
-        titulo: "string",
-        descripcion: "asd",
-        id: 5
-      }
-    };
+  getProduct() {
+    const response = this.ProductHttpServiceService.getOne(50).subscribe(res => console.log(res));
+  }
 
-    const url = "https://api.escuelajs.co/api/v1/products";
-    this.httpClient.post(url, data).subscribe(response => {
-      console.log(response)
-    });
-  }  
+  createProduct() {
+    const data = {
+      title:"Sebastián Ortiz",
+      price:20,
+      description:"hola bb",
+      images:["https://sdfsdgsdhasjh"],
+      categoryId:1
+    }
+    this.ProductHttpServiceService.storeProduct(data).subscribe(res => console.log(res));
+    console.log(data)
+  }
+  
+  updateProduct() {
+    const data = {
+      title:"Michael Ortiz :p",
+      price:25,
+      description:"hola soy desciption",
+    }
+    this.ProductHttpServiceService.update(60, data).subscribe(res => console.log(res))
+  }
 
-// PUT
-  updateProduct(): void {
-    const data: IProducto = {
-      title: "Gato con botas",
-      price: 500,
-      description: "hola",
-      images: ['https://educacion30.b-cdn.net/wp-content/uploads/2019/02/girasoles-978x652.jpg'],
-      categoryId: 5,
-
-      category: {
-        titulo: "string",
-        descripcion: "asd",
-        id: 5
-      }
-    };
-
-    const url = "https://api.escuelajs.co/api/v1/products/218";
-    this.httpClient.put(url, data).subscribe(response => {
-      console.log(response)
-    });
-  }  
-
-// DELETE
-  deleteProduct(): void {
-    const url = "https://api.escuelajs.co/api/v1/products/217";
-    this.httpClient.delete(url).subscribe(response => {
-      console.log(response)
-    });
+  deleteProduct() {
+    this.ProductHttpServiceService.destroid(61).subscribe(res => console.log(res))
   }
 
   ngOnInit(): void {
-    // this.getProducts();
-    // this.getProduct();
-    this.createProduct();
-    // this.updateProduct();
-    // this.deleteProduct();
+    this.getProducts()
+    // this.getProduct()
+    // this.createProduct()
+    // this.updateProduct()
+    // this.deleteProduct()
   };  
 };
