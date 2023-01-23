@@ -1,6 +1,7 @@
 import { ICategory } from "./category.model";
 
 export interface IProducto {
+    id: number;
     title: string,
     price: number,
     description: string,
@@ -15,4 +16,4 @@ export interface CreateProductDto extends Omit<IProducto, 'id'| 'category'>{
 
 export interface UpdateProductDto extends Partial<IProducto>{
     categoryId?:number;
-}
+};

@@ -7,7 +7,7 @@ import { ProductHttpServiceService } from 'src/app/services/product-http-service
 // post
 // put
 // delete
-                                                // 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳//                                   
+                                 // 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳//                                   
 
 @Component({
   selector: 'app-product',
