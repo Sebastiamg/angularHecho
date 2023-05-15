@@ -15,7 +15,6 @@ import { PagesModuleModule } from './pages/pages.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -34,3 +33,4 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ]
 })
 export class AppModule { }
+/* // MICHAEL SEBASTIAN ORTIZ JARRIN */

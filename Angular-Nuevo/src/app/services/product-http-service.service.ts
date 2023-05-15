@@ -13,10 +13,10 @@ export class ProductHttpServiceService {
 
   constructor( private httpClient: HttpClient ) {};
 
-// GET ALL  
+// GET ALL
   getAll(): Observable<IProducto> {
     return this.httpClient.get<IProducto>(this.apiurl);
-  };  
+  };
 
 // GET
   getOne(id: IProducto['id']): Observable<IProducto> {
@@ -24,7 +24,7 @@ export class ProductHttpServiceService {
   };
 
 // CREATE
-  storeProduct(product: object): Observable<IProducto> {
+  storeProduct(product: IProducto): Observable<IProducto> {
     return this.httpClient.post<IProducto>(`${this.apiurl}`, product);
   }
 
@@ -41,3 +41,4 @@ export class ProductHttpServiceService {
     );
   }
 }
+/* // MICHAEL SEBASTIAN ORTIZ JARRIN */

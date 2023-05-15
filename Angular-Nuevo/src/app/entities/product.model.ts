@@ -6,8 +6,8 @@ export interface IProducto {
     price: number,
     description: string,
     images: string[],
-    category: ICategory,
     categoryId: number
+    category?: ICategory,
 }
 
 export interface CreateProductDto extends Omit<IProducto, 'id'| 'category'>{
@@ -17,3 +17,4 @@ export interface CreateProductDto extends Omit<IProducto, 'id'| 'category'>{
 export interface UpdateProductDto extends Partial<IProducto>{
     categoryId?:number;
 };
+/* // MICHAEL SEBASTIAN ORTIZ JARRIN */

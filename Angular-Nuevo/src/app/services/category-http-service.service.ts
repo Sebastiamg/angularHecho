@@ -12,10 +12,10 @@ export class CategoryHttpServiceService {
 
   constructor( private httpClient: HttpClient ) {};
 
-  // GET ALL  
+  // GET ALL
   getAll(): Observable<ICategories> {
     return this.httpClient.get<ICategories>(this.apiUrl);
-  }; 
+  };
 
   // GET
   getOne(id: ICategories['id']): Observable<ICategories> {
@@ -39,3 +39,4 @@ export class CategoryHttpServiceService {
     }));
   };
 }
+/* // MICHAEL SEBASTIAN ORTIZ JARRIN */

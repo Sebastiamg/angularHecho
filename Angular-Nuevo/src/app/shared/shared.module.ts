@@ -7,8 +7,6 @@ import { NavLeftComponent } from './nav-left/nav-left.component';
 import { NavComponent } from './nav/nav.component';
 import { SharedComponent } from './shared.component';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -29,3 +27,4 @@ import { SharedComponent } from './shared.component';
   ]
 })
 export class SharedModule { };
+/* // MICHAEL SEBASTIAN ORTIZ JARRIN */

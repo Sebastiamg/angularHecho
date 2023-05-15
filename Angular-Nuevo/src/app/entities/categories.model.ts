@@ -3,3 +3,4 @@ export interface ICategories {
     image: string;
     id?: number;
 }
+/* // MICHAEL SEBASTIAN ORTIZ JARRIN */
