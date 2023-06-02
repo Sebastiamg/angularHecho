@@ -25,6 +25,13 @@ export class ProductComponent implements OnInit {
     description: '',
   };
 
+  private productID = 0;
+  dataBody = {
+    title: '',
+    price: 0,
+    description: '',
+  };
+
   constructor(
     private ProductHttpServiceService: ProductHttpServiceService,
     private CategoryHttpServices: CategoryHttpServiceService
@@ -34,11 +41,10 @@ export class ProductComponent implements OnInit {
     const response = this.ProductHttpServiceService.getAll().subscribe(
       (res) => {
         this.products = res;
-        console.log(res);
       }
     );
     return response;
-  }
+  } //michael ortiz
 
   getProduct() {
     const response = this.ProductHttpServiceService.getOne(50).subscribe(
@@ -47,29 +53,35 @@ export class ProductComponent implements OnInit {
   }
 
   createProduct() {
-    const data: Omit<IProducto, 'category'> = {
-      title: 'Sebastián Ortiz',
-      price: 20,
-      description: 'hola bb',
-      images: ['https://sdfsdgsdhasjh'],
-      categoryId: 1,
-      id: 0,
-    };
-    this.ProductHttpServiceService.storeProduct(data).subscribe((res) =>
+    this.ProductHttpServiceService.getOne(50).subscribe((res) => {
       console.log(res)
-    );
-    console.log(data);
-  }
+      const data = {
+        ...res,
+        categoryId: 2,
+        title: this.dataBody.title,
+        price: this.dataBody.price,
+        description: this.dataBody.description,
+      } as IProducto;
+
+      this.ProductHttpServiceService.storeProduct(data).subscribe((res) =>
+        this.getProducts()
+      );
+    });
+  } //Michael Ortiz
 
   updateProduct() {
     const data = {
-      title: 'Michael Ortiz :p',
-      price: 25,
-      description: 'hola soy desciption',
+      ...this.selectiveProduct,
+      ...this.dataBody,
     };
-    this.ProductHttpServiceService.update(60, data).subscribe((res) =>
-      console.log(res)
+
+    this.ProductHttpServiceService.update(this.productID, data).subscribe(
+      (res) => this.getProducts()
     );
+  } //Michael Ortiz
+
+  editAll(limit: number) {
+    this.ProductHttpServiceService.allput();
   }
 
   deleteProduct(id: IProducto['id']) {
@@ -80,6 +92,7 @@ export class ProductComponent implements OnInit {
 
   editProduct(product: IProducto) {
     this.selectiveProduct = product;
+    this.productID = product.id;
   }
 
   // ------------------------------------ Categories ------------------------------------ //

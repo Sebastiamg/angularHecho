@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -9,21 +8,23 @@ import { AppComponent } from '../app.component';
 
 const routes: Routes = [
   //rutas protegidas
-  {path: '', component:PagesComponent },
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'category', component: CategoryComponent},
-  {path: 'product', component: ProductComponent}
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'product' },
+      { path: 'product', component: ProductComponent },
+      { path: 'pages', component: PagesComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'category', component: CategoryComponent },
+    ],
+  },
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    RouterModule.forChild(routes),
-  ],
-   exports: [
-    RouterModule
-   ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [],
 })
-
-export class PagesRoutingModule { };
+export class PagesRoutingModule {}
 /* // MICHAEL SEBASTIAN ORTIZ JARRIN */

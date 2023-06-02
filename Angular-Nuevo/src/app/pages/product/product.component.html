@@ -2,20 +2,21 @@
 
 <h1>Productos</h1>
 <!-- *ngFor="let item of products" -->
-<!-- <div class='bg-red-700'>
+<div class='bg-red-700'>
     <div class="bg-red-700">
       <label for="title" class="form-label">Nombre Producto</label>
-      <input type="text" id="title" class="form-control" [value]="selectiveProduct.title">
+      <input type="text" id="title" class="form-control" [value]="selectiveProduct.title" [(ngModel)]="dataBody.title">
 
       <label for="Price" class="form-label">Precio Productoo</label>
-      <input type="text" id="Price" class="form-control" [value]="selectiveProduct.price">
+      <input type="text" id="Price" class="form-control" [value]="selectiveProduct.price" [(ngModel)]="dataBody.price">
 
       <label for="Description" class="form-label">Descripcioón</label>
-      <textarea type="text" id="title" class="form-control" [value]="selectiveProduct.description"></textarea>
+      <textarea type="text" id="title" class="form-control" [value]="selectiveProduct.description" [(ngModel)]="dataBody.description"></textarea>
 
-      <button class="btn btn-primary">SAVE</button>
+      <button class="btn btn-primary" (click)="createProduct()">SAVE</button>
+      <button class="btn btn-primary" (click)="updateProduct()">EDITAR</button>
     </div>
-</div> -->
+</div>
 <table class="table">
     <thead class="table-dark">
         <th>Id</th>
@@ -32,9 +33,10 @@
             <td>{{item.title}}</td>
             <td>${{item.price}}</td>
             <td>{{item.description}}</td>
-            <td><img src="{{item.images[1]}}"  width="50px" height="50px"></td>
+            <td><img src="{{item.images[1]}}"  width="200px" height="200px"></td>
             <td><button class="btn btn-danger" (click)="deleteProduct(item.id)">DELETE</button></td>
-            <!-- <td><button class="btn btn-success" (click)="editProduct(item)">UPDATE</button></td> -->
+            <td><button class="btn btn-success" (click)="editProduct(item)">UPDATE</button></td>
         </tr>
     </tbody>
 </table>
+<!-- <button class="btn btn-primary" (click)="editAll(2)">EDIT ALL</button> -->

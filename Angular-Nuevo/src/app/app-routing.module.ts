@@ -1,35 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthRoutingModule } from './auth/auth-routing.module';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { PagesRoutingModule } from './pages/pages-routing.module';
-import { ProductComponent } from './pages/product/product.component';
+import { AppComponent } from './app.component';
+import { LoginGardGuard } from './auth/login/login-gard.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./auth/auth-routing.module').then(
+            (module) => module.AuthRoutingModule
+          ),
+      },
+      {
+        path: 'pag',
+        loadChildren: () =>
+          import('./pages/pages-routing.module').then(
+            (module) => module.PagesRoutingModule
+          ),
+        canLoad: [LoginGardGuard],
+      },
 
-  //AUTH
-
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-
-  {path: '', redirectTo:'/dashboard', pathMatch:'full'},
-
-  {path: '**', component: NotFoundComponent}
+      { path: '**', component: NotFoundComponent },
+    ],
+  },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    PagesRoutingModule,
-    AuthRoutingModule,
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 /* // MICHAEL SEBASTIAN ORTIZ JARRIN */
